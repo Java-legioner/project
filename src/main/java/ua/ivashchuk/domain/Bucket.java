@@ -1,9 +1,14 @@
 package ua.ivashchuk.domain;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
+@Table(name = "bucket")
 public class Bucket {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Integer userId;
     private Integer productId;

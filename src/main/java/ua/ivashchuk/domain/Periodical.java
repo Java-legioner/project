@@ -1,8 +1,14 @@
 package ua.ivashchuk.domain;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "periodical")
 public class Periodical {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
     private String description;
