@@ -1,23 +1,52 @@
 package ua.ivashchuk.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import ua.ivashchuk.domain.Periodical;
+import ua.ivashchuk.service.PeriodicalService;
 
 @Controller
 public class MainController {
 
-    @GetMapping("/")
-    public String main(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "home";
+    @Autowired
+    private PeriodicalService periodicalService;
+
+//    @GetMapping("/")
+//    public String main(@RequestParam(name="username", required=false, defaultValue="World") String name, Model model) {
+//        model.addAttribute("name", name);
+//        return "home";
+//    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView main(){
+
+        ModelAndView map = new ModelAndView("home");
+        map.addObject("periodicals", periodicalService.findAllPeriodicals());
+
+        return map;
     }
 
-    @GetMapping("/hello")
-    public String hello(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "hello";
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public ModelAndView welcome(){
+
+        ModelAndView map = new ModelAndView("home");
+        map.addObject("periodicals", periodicalService.findAllPeriodicals());
+
+        return map;
+    }
+
+
+    @RequestMapping(value = "/create-periodical", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ModelAndView createPeriodical(Model model){
+        return new ModelAndView("createPeriodical", "periodical", new Periodical());
     }
 
 
