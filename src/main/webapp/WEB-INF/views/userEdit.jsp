@@ -7,6 +7,7 @@
 <%@ page import="ua.ivashchuk.controller.UserController" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ua.ivashchuk.domain.Role" %>
+
 <!DOCTYPE html>
 <html>
 <head>

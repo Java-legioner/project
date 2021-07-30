@@ -18,11 +18,6 @@ public class MainController {
     @Autowired
     private PeriodicalService periodicalService;
 
-//    @GetMapping("/")
-//    public String main(@RequestParam(name="username", required=false, defaultValue="World") String name, Model model) {
-//        model.addAttribute("name", name);
-//        return "home";
-//    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main(){
