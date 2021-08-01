@@ -39,7 +39,7 @@
             <c:if test="${not empty periodicals}">
                 <c:forEach items="${periodicals}" var="currentPeriodical">
                     <div class="w3-card-12 card">
-                        <div><img src="http://kaverisias.com/wp-content/uploads/2018/01/catalog-default-img.gif" alt="Norway"
+                        <div><img src="data:image/jpa;base64, ${currentPeriodical.encodedImage}"
                                   style="width:100%"></div>
                         <div class="w3-container w3-center card-text">
                             <h3>${currentPeriodical.name}</h3>

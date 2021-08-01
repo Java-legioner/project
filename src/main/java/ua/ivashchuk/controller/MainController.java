@@ -40,8 +40,8 @@ public class MainController {
 
     @RequestMapping(value = "/create-periodical", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ModelAndView createPeriodical(Model model){
-        return new ModelAndView("createPeriodical", "periodical", new Periodical());
+    public String createPeriodical(Model model){
+        return "createPeriodical";
     }
 
 

@@ -40,20 +40,23 @@
 
 
         <div class="w3-container">
-           <%--@elvariable id="periodical" type=""--%>
-           <form:form method="POST" action="${contextPath}/addPeriodical" modelAttribute="periodical" >
+           <form:form method="POST" action="${contextPath}/addPeriodical" enctype="multipart/form-data">
                <table>
                    <tr>
-                       <td><form:label path="name">Name</form:label></td>
-                       <td><form:input path="name"></form:input></td>
+                       <td>Name</td>
+                       <td><input type="text" name="name"></td>
                    </tr>
                    <tr>
-                       <td><form:label path="description">Description</form:label></td>
-                       <td><form:input path="description"></form:input></td>
+                       <td>Description</td>
+                       <td><input type="text" name="description"></td>
                    </tr>
                    <tr>
-                       <td><form:label path="price">Price</form:label></td>
-                       <td><form:input path="price"></form:input></td>
+                       <td>Price</td>
+                       <td><input type="number" name="price"></td>
+                   </tr>
+                   <tr>
+                       <td>Select photo</td>
+                       <td><input type="file" name="image"></td>
                    </tr>
                    <tr>
                        <td><input type="submit" value="Submit"/></td>
