@@ -14,7 +14,6 @@ public class PeriodicalsDTOHelper {
         periodical.setName(name);
         periodical.setDescription(description);
         periodical.setPrice(price);
-        periodical.setImage(file.getBytes());
         periodical.setEncodedImage(Base64.getEncoder().encodeToString(file.getBytes()));
 
 

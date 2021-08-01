@@ -14,8 +14,6 @@ public class Periodical {
     private String description;
     private Double price;
 
-    @Lob
-    private byte [] image;
 
     @Lob
     private String encodedImage;
@@ -69,13 +67,6 @@ public class Periodical {
         this.price = price;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 
     public String getEncodedImage() {
         return encodedImage;
