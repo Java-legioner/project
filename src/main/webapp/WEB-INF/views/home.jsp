@@ -40,8 +40,8 @@
             <c:if test="${not empty periodicals}">
             <c:forEach items="${periodicals}" var="currentPeriodical">
             <div class="w3-card-12 card">
-                <div><img src="data:image/jpa;base64, ${currentPeriodical.encodedImage}"
-                          style="width:100%"></div>
+                <img src="data:image/jpa;base64, ${currentPeriodical.encodedImage}"
+                          style="width:100%">
                 <div class="w3-container w3-center card-text">
                     <h3>${currentPeriodical.name}</h3>
                     <p>${currentPeriodical.description}</p>
@@ -53,10 +53,10 @@
                     <input type="submit" style="width: 100%" class="w3-btn-block w3-dark-grey" value="Add bucket">
 
                 </form:form>
-
+            </div>
                 </c:forEach>
                 </c:if>
-            </div>
+
         </div>
     </div>
 </div>

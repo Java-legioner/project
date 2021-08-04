@@ -1,5 +1,7 @@
 package ua.ivashchuk.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,6 +12,9 @@ import ua.ivashchuk.domain.User;
 
 @Service
 public class UserService implements UserDetailsService {
+
+    private Logger logger = LoggerFactory.getLogger(UserService.class);
+
 
     @Autowired
     private UserRepository userRepos;
@@ -23,7 +28,9 @@ public class UserService implements UserDetailsService {
         return userRepos.findByUsername(username);
     }
 
-    public User findByEmail(String username){
+    public User findByEmail(String username) {
+        logger.debug("Get username item by username {} :" + username);
+
         return userRepos.findByUsername(username);
     }
 }
