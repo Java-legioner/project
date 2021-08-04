@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ua.ivashchuk.dao.UserRepository;
+import ua.ivashchuk.domain.User;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -19,6 +20,10 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepos.findByUsername(username);
+    }
+
+    public User findByEmail(String username){
         return userRepos.findByUsername(username);
     }
 }

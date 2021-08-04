@@ -23,7 +23,7 @@
         <h3 class="w3-bar-item">Menu</h3>
         <a href="/home" class="w3-bar-item w3-button">Home</a>
         <a href="/create-periodical" class="w3-bar-item w3-button">Create periodical</a>
-        <a href="#" class="w3-bar-item w3-button">Bucket</a>
+        <a href="/buckets" class="w3-bar-item w3-button">Bucket</a>
         <form style="margin-left: 10px;" action="/logout" method="post">
             <input type="submit" class="button red big" value="Sign Out"/> <input
                 type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -35,10 +35,7 @@
 
         <div class="w3-container w3-teal">
             <h1> Create new periodical</h1>
-
         </div>
-
-
         <div class="w3-container">
            <form:form method="POST" action="${contextPath}/addPeriodical" enctype="multipart/form-data">
                <table>

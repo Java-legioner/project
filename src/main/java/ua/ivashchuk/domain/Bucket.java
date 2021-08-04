@@ -2,7 +2,6 @@ package ua.ivashchuk.domain;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "bucket")
@@ -10,24 +9,29 @@ public class Bucket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Integer userId;
-    private Integer productId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Periodical periodical;
+
+    @Column(name = "purchase_date")
     private Date purchaseDate;
 
     public Bucket() {
 
     }
 
-    public Bucket(Integer userId, Integer productId, Date purchaseDate) {
-        this.userId = userId;
-        this.productId = productId;
-        this.purchaseDate = purchaseDate;
+    public Bucket(Integer id) {
+        this.id = id;
     }
 
-    public Bucket(Integer id, Integer userId, Integer productId, Date purchaseDate) {
-        this.id = id;
-        this.userId = userId;
-        this.productId = productId;
+    public Bucket(User user, Periodical periodical, Date purchaseDate) {
+        this.user = user;
+        this.periodical = periodical;
         this.purchaseDate = purchaseDate;
     }
 
@@ -39,20 +43,20 @@ public class Bucket {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Periodical getPeriodical() {
+        return periodical;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setPeriodical(Periodical periodical) {
+        this.periodical = periodical;
     }
 
     public Date getPurchaseDate() {
@@ -61,31 +65,5 @@ public class Bucket {
 
     public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Bucket bucket = (Bucket) o;
-        return Objects.equals(id, bucket.id) &&
-                Objects.equals(userId, bucket.userId) &&
-                Objects.equals(productId, bucket.productId) &&
-                Objects.equals(purchaseDate, bucket.purchaseDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, userId, productId, purchaseDate);
-    }
-
-    @Override
-    public String toString() {
-        return "Bucket{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", productId=" + productId +
-                ", purchaseDate=" + purchaseDate +
-                '}';
     }
 }

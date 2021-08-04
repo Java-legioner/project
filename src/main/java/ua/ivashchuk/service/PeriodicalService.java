@@ -20,4 +20,7 @@ public class PeriodicalService {
     public List<Periodical> findAllPeriodicals(){
         return periodicalRepository.findAll();
     }
+    public Periodical findById(Integer id){
+        return periodicalRepository.getById(id);
+    }
 }

@@ -14,7 +14,6 @@ public class Periodical {
     private String description;
     private Double price;
 
-
     @Lob
     private String encodedImage;
 

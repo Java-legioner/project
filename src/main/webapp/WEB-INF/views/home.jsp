@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="cotextPath" value="${pageContext.request.contextPath}"/>
 
@@ -21,7 +22,7 @@
         <h3 class="w3-bar-item">Menu</h3>
         <a href="/home" class="w3-bar-item w3-button">Home</a>
         <a href="/create-periodical" class="w3-bar-item w3-button">Create periodical</a>
-        <a href="#" class="w3-bar-item w3-button">Bucket</a>
+        <a href="/buckets" class="w3-bar-item w3-button">Bucket</a>
         <form style="margin-left: 10px;" action="/logout" method="post">
             <input type="submit" class="button red big" value="Sign Out"/> <input
                 type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -37,20 +38,25 @@
         </div>
         <div class="flex">
             <c:if test="${not empty periodicals}">
-                <c:forEach items="${periodicals}" var="currentPeriodical">
-                    <div class="w3-card-12 card">
-                        <div><img src="data:image/jpa;base64, ${currentPeriodical.encodedImage}"
-                                  style="width:100%"></div>
-                        <div class="w3-container w3-center card-text">
-                            <h3>${currentPeriodical.name}</h3>
-                            <p>${currentPeriodical.description}</p>
-                            <hr>
-                            <p>${currentPeriodical.price}</p>
-                        </div>
-                        <div><button style="width: 100%" class="w3-btn-block w3-dark-grey">Add to bucket</button></div>
-                    </div>
+            <c:forEach items="${periodicals}" var="currentPeriodical">
+            <div class="w3-card-12 card">
+                <div><img src="data:image/jpa;base64, ${currentPeriodical.encodedImage}"
+                          style="width:100%"></div>
+                <div class="w3-container w3-center card-text">
+                    <h3>${currentPeriodical.name}</h3>
+                    <p>${currentPeriodical.description}</p>
+                    <hr>
+                    <p>${currentPeriodical.price}</p>
+                </div>
+                <form:form action="${contextPath}/bucket" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" value="${currentPeriodical.id}" class="form-control" name="periodicalId">
+                    <input type="submit" style="width: 100%" class="w3-btn-block w3-dark-grey" value="Add bucket">
+
+                </form:form>
+
                 </c:forEach>
-            </c:if>
+                </c:if>
+            </div>
         </div>
     </div>
 </div>
