@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="cotextPath" value="${pageContext.request.contextPath}"/>
 
@@ -23,9 +24,20 @@
     <!-- Sidebar -->
     <div class="w3-sidebar w3-light-grey w3-bar-block " style="width:15%">
         <h3 class="w3-bar-item">Menu</h3>
+
         <a href="/home" class="w3-bar-item w3-button">Home</a>
+        <security:authorize access="hasAuthority('ADMIN')">
         <a href="/create-periodical" class="w3-bar-item w3-button">Create periodical</a>
+        </security:authorize>
+
+        <security:authorize access="hasAuthority('USER')">
         <a href="/buckets" class="w3-bar-item w3-button">Bucket</a>
+        </security:authorize>
+
+        <security:authorize access="hasAuthority('ADMIN')">
+        <a href="/user" class="w3-bar-item w3-button">Users</a>
+        </security:authorize>
+
         <form style="margin-left: 5%;margin-top: 5%;" action="/logout" method="post">
             <input type="submit" class="button red big" value="Sign Out"/> <input
                 type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

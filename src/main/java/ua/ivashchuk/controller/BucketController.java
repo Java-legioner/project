@@ -1,10 +1,10 @@
 package ua.ivashchuk.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +16,6 @@ import ua.ivashchuk.service.BucketService;
 import ua.ivashchuk.service.PeriodicalService;
 import ua.ivashchuk.service.UserService;
 
-import java.security.Principal;
 import java.util.Date;
 
 @Controller
@@ -32,11 +31,13 @@ public class BucketController {
     private PeriodicalService periodicalService;
 
     @RequestMapping(value = "/buckets", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('USER')")
     public ModelAndView getAllItems(){
         return getBucketItems();
     }
 
     @RequestMapping(value = "/bucket", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('USER')")
     public ModelAndView create(@RequestParam String periodicalId){
         Periodical periodical = periodicalService.findById(Integer.parseInt(periodicalId));
 
@@ -54,6 +55,7 @@ public class BucketController {
     }
 
     @RequestMapping(value = "/bucket", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('USER')")
     public ModelAndView delete(@RequestParam String id) {
 
         bucketService.delete(new Bucket(Integer.parseInt(id.replaceAll("\\s", ""))));

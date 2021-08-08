@@ -43,5 +43,3 @@
 </body>
 </html>
 
-
-<%--${user.roles == 'role' ? "checked" : ""}--%>
